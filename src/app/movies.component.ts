@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy} from '@angular/core';
 import { ElementsState, getAllMovies, getMoviesState } from './store/reducers/reducer';
 import { Store } from '@ngrx/store';
 import { getMovies, MoviesState } from './store/reducers/movies.reducer';
@@ -10,7 +10,8 @@ import { GetMovieAction } from './store/actions/action';
   selector: 'app-movies',
   template: `<ul>
                 <li *ngFor="let movie of movies">{{movie.title}}</li>
-            </ul>`
+            </ul>`,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MoviesComponent {
 
