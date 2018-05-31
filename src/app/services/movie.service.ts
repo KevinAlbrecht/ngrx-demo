@@ -8,28 +8,49 @@ import { Movie } from '../models/movie.model';
 
 @Injectable()
 export class MovieService {
-  constructor() { }
+	constructor() { }
 
-  getMovies(): Observable<Movie[]> {
-    return Observable.of([
-      {
-        language: 'Japanese',
-        length: 107,
-        RecordedYear: 2016,
-        title: '君の名は'
-      },
-      {
-        language: 'English',
-        length: 92,
-        RecordedYear: 1992,
-        title: "Wayne's world"
-      },
-      {
-        language: 'English',
-        length: 107,
-        RecordedYear: 2014,
-        title: 'Whiplash'
-      }
-    ]).delay(2000);
-  }
+	getMovies(): Observable<Movie[]> {
+		return Observable.of([
+			{
+				id: 1,
+				categoryId: 1,
+				language: 'Japanese',
+				length: 107,
+				RecordedYear: 2016,
+				title: '君の名は',
+				actors: [{
+					id: 1,
+					firstName: 'moi',
+					lastName: 'toi'
+				}]
+			},
+			{
+				id: 2,
+				categoryId: 1,
+				language: 'English',
+				length: 92,
+				RecordedYear: 1992,
+				title: 'Wayne\'s world',
+				actors: [{
+					id: 1,
+					firstName: 'moi',
+					lastName: 'toi'
+				}]
+			},
+			{
+				id: 3,
+				categoryId: 2,
+				language: 'English',
+				length: 107,
+				RecordedYear: 2014,
+				title: 'Whiplash',
+				actors: [{
+					id: 1,
+					firstName: 'moi',
+					lastName: 'toi'
+				}]
+			}
+		]).delay(2000);
+	}
 }

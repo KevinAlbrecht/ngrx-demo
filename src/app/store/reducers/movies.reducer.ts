@@ -1,49 +1,53 @@
-import { Movie } from '../../models/movie.model';
-import * as MovieActions from '../actions/action';
+import * as actions from '../actions/index';
+import * as models from '../../models';
 
 // State Type
 export interface MoviesState {
-  data: Movie[];
-  loading: boolean;
-  error: string;
+	data: { [id: number]: models.Movie };
+	loading: boolean;
+	error: string;
 }
 
 // Initial state
 export const initialState: MoviesState = {
-  data: [],
-  loading: false,
-  error: ''
+	data: {},
+	loading: false,
+	error: ''
 };
 
 // REDUCER
 export function reducer(
-  state = initialState,
-  action: MovieActions.GetMovieAction | MovieActions.GetMovieActionError | MovieActions.GetMovieActionSuccess
+	state = initialState,
+	action: actions.MoviesActionTypes
 ): MoviesState {
-  switch (action.type) {
-    case MovieActions.GET_MOVIES: {
-      return {
-        ...state,
-        loading: true
-      };
-    }
-    case MovieActions.GET_MOVIES_ERROR: {
-      return {
-        ...state,
-        loading: false,
-        error: action.payload
-      };
-    }
-    case MovieActions.GET_MOVIES_SUCCESS: {
-      return {
-        ...state,
-        loading: false,
-        data: action.payload
-      };
-    }
-  }
+	switch (action.type) {
+		case actions.GET_MOVIE:
+		case actions.GET_MOVIES: {
+			return {
+				...state,
+				loading: true
+			};
+		}
+		case actions.GET_MOVIE_ERROR:
+		case actions.GET_MOVIES_ERROR: {
+			return {
+				...state,
+				loading: false,
+				error: action.payload
+			};
+		}
+		case actions.GET_MOVIE_SUCCESS:
+		case actions.GET_MOVIES_SUCCESS: {
+			const entities = models.DictionaryUtils.toDictionnary<models.Movie>(action.payload);
+			return {
+				...state,
+				loading: false,
+				data: action.payload
+			};
+		}
+	}
 
-  return state;
+	return state;
 }
 
 // Sub selectors...
