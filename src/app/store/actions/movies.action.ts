@@ -9,9 +9,22 @@ export const GET_MOVIES = 'GET_MOVIES';
 export const GET_MOVIES_SUCCESS = 'GET_MOVIES_SUCCESS';
 export const GET_MOVIES_ERROR = 'GET_MOVIES_ERROR';
 
+export const GET_SELECTED_MOVIE = 'GET_SELECTED_MOVIE';
+export const GET_SELECTED_MOVIE_SUCCESS = 'GET_SELECTED_MOVIE_SUCCESS';
+
+
 // Les actions
 export class GetMovieAction implements Action {
 	readonly type = GET_MOVIE;
+}
+
+export class GetSelectedMovieAction implements Action {
+	readonly type = GET_SELECTED_MOVIE;
+}
+
+export class GetSelectedMovieActionSuccess implements Action {
+	readonly type = GET_SELECTED_MOVIE_SUCCESS;
+	constructor(public payload: any) { }
 }
 
 export class GetMovieActionSuccess implements Action {
@@ -40,4 +53,5 @@ export class GetMoviesActionError implements Action {
 
 export type MoviesActionTypes =
 	GetMovieAction | GetMovieActionError | GetMovieActionSuccess |
-	GetMoviesAction | GetMoviesActionError | GetMoviesActionSuccess;
+	GetMoviesAction | GetMoviesActionError | GetMoviesActionSuccess |
+	GetSelectedMovieActionSuccess | GetSelectedMovieAction;

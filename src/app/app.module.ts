@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { reducer } from './store/reducers/movies.reducer';
 import { EffectsModule } from '@ngrx/effects/';
-import { MyService } from './services/movie.service';
+import { MyService } from './services/my.service';
 import { MoviesListComponent } from './components/movies-list.component';
 import { routerReducers } from './router-store/router.state';
 import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router-store';
@@ -21,7 +21,7 @@ import { effects } from './store/effects/effect';
 
 const routes: Routes = [
 	{ path: '', component: CategoriesComponent, pathMatch: 'full' },
-	{ path: 'category/:categorieId', component: MoviesComponent, pathMatch: 'full' },
+	{ path: 'category/:categoryId', component: MoviesComponent, pathMatch: 'full' },
 	{ path: ':movieId', component: MovieComponent },
 	{ path: 'error', component: ErrorComponent, pathMatch: 'full' }
 ];

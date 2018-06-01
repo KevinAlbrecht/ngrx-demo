@@ -22,6 +22,7 @@ export function reducer(
 ): MoviesState {
 	switch (action.type) {
 		case actions.GET_MOVIE:
+		case actions.GET_SELECTED_MOVIE:
 		case actions.GET_MOVIES: {
 			return {
 				...state,
@@ -37,6 +38,7 @@ export function reducer(
 			};
 		}
 		case actions.GET_MOVIE_SUCCESS:
+		case actions.GET_SELECTED_MOVIE_SUCCESS:
 		case actions.GET_MOVIES_SUCCESS: {
 			const entities = models.DictionaryUtils.toDictionnary<models.Movie>(action.payload);
 			return {

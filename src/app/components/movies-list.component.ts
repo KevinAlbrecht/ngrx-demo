@@ -7,7 +7,12 @@ import { Movie } from '../models/movie.model';
 @Component({
 	selector: 'app-movies-list',
 	template: `<ul>
-                <li *ngFor="let movie of movies">{{movie.title}}</li>
+				<li *ngFor="let movie of movies">
+				<p>Title: {{movie.title}}</p>
+				<p>Année: {{movie.RecordedYear}}</p>
+				<p>Acteur: {{movie.actors[0].firstName +' - ' + movie.actors[0].lastName}}</p>
+				<p>Language: {{movie.language}}</p>
+				</li>
             </ul>`,
 	changeDetection: ChangeDetectionStrategy.OnPush
 })

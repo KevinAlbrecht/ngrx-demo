@@ -21,3 +21,4 @@ export const routerReducers: ActionReducerMap<RouterState> = {
 
 // GetRouterState
 export const getRouterState = createFeatureSelector<RouterReducerState<MyRouterStateSnapshot>>('router');
+export const getRouter = createSelector(getRouterState, (routerState: any) => routerState.routerReducerState);

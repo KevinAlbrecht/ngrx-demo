@@ -3,7 +3,7 @@ import { Effect, Actions } from '@ngrx/effects';
 import { map, catchError, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import * as CategoriesActions from '../actions/categories.action';
-import { MyService } from '../../services/movie.service';
+import { MyService } from '../../services/my.service';
 import { Action } from '@ngrx/store';
 import { ROUTER_NAVIGATION } from '@ngrx/router-store';
 import { Router } from '@angular/router';

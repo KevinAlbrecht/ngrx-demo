@@ -2,12 +2,15 @@ import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/s
 import { getRouterState } from '../../router-store/router.state';
 import { ElementsState } from '../reducers';
 import { getElementsState } from '.';
-import { getMovies, getMoviesLoading } from '../reducers/movies.reducer';
+import { getMovies, getMoviesLoading, MoviesState } from '../reducers/movies.reducer';
+import { DictionaryUtils, Movie } from '../../models';
 
 // ________selectors_________
 
 // moviesState
 const getMoviesState = createSelector(getElementsState, (state: ElementsState) => state.movies);
+
+// const getSelectedMoviesState = createSelector
 
 // movie & routeParams
 // export const getSelectedMoviesState = createSelector(getElementsState, getRouterState, (state: ElementsState, router: any) => {
@@ -19,3 +22,7 @@ const getMoviesState = createSelector(getElementsState, (state: ElementsState) =
 // pure datas
 export const getAllMovies = createSelector(getMoviesState, getMovies);
 export const getAllMoviesLoading = createSelector(getMoviesState, getMoviesLoading);
+export const getSelectedMovies = createSelector(getMoviesState, (state: MoviesState) => {
+	const entities = DictionaryUtils.toArray<Movie>(state.data);
+	return { ...state, data: entities };
+});

@@ -10,9 +10,9 @@ import { DictionaryUtils, Category } from '../../models';
 // ________state selectors
 export const getCategoriesState = createSelector(getElementsState, (state: ElementsState) => state.categories);
 
-export const getSelectedMoviesState = createSelector(getElementsState, getRouterState, (state: ElementsState, router: any) => {
-	return { route: (router ? router.routerReducerState.state : null), movies: state.movies };
-});
+// export const getSelectedMoviesState = createSelector(getElementsState, getRouterState, (state: ElementsState, router: any) => {
+// 	return { route: (router ? router.routerReducerState.state : null), movies: state.movies };
+// });
 
 // _______values selectors
 export const getAllCategories = createSelector(getCategoriesState, CategoriesReducer.getAllCategories);

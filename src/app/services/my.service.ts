@@ -4,6 +4,7 @@ import { of } from 'rxjs/observable/of';
 import { delay } from 'rxjs/operators/delay';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/delay';
+import 'rxjs/add/observable/throw';
 import { Movie } from '../models/movie.model';
 import { Category } from '../models';
 
@@ -29,7 +30,7 @@ export class MyService {
 			},
 			{
 				id: 2,
-				categoryId: 1,
+				categoryId: 2,
 				language: 'English',
 				length: 92,
 				RecordedYear: 1992,
@@ -42,7 +43,7 @@ export class MyService {
 			},
 			{
 				id: 3,
-				categoryId: 2,
+				categoryId: 3,
 				language: 'English',
 				length: 107,
 				RecordedYear: 2014,
@@ -67,8 +68,9 @@ export class MyService {
 	}
 
 	getMoviesByCategoryId(categoryId: number): Observable<Movie[]> {
+		// return Observable.throw("une erreur");
 		return Observable.of(this.movies.reduce((datas, movie) => {
-			if (movie.categoryId === categoryId) {
+			if (movie.categoryId == categoryId) {
 				datas.push(movie);
 			}
 			return datas;
