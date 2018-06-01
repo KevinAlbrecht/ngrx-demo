@@ -5,13 +5,15 @@ import { delay } from 'rxjs/operators/delay';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/delay';
 import { Movie } from '../models/movie.model';
+import { Category } from '../models';
 
 @Injectable()
-export class MovieService {
-	constructor() { }
+export class MyService {
+	private readonly movies: Movie[];
+	private readonly categories: Category[];
 
-	getMovies(): Observable<Movie[]> {
-		return Observable.of([
+	constructor() {
+		this.movies = [
 			{
 				id: 1,
 				categoryId: 1,
@@ -21,8 +23,8 @@ export class MovieService {
 				title: '君の名は',
 				actors: [{
 					id: 1,
-					firstName: 'moi',
-					lastName: 'toi'
+					firstName: 'makoto',
+					lastName: 'shinkai'
 				}]
 			},
 			{
@@ -34,8 +36,8 @@ export class MovieService {
 				title: 'Wayne\'s world',
 				actors: [{
 					id: 1,
-					firstName: 'moi',
-					lastName: 'toi'
+					firstName: 'Mike',
+					lastName: 'Myers'
 				}]
 			},
 			{
@@ -47,10 +49,33 @@ export class MovieService {
 				title: 'Whiplash',
 				actors: [{
 					id: 1,
-					firstName: 'moi',
-					lastName: 'toi'
+					firstName: 'J.K.',
+					lastName: 'Simmons'
 				}]
 			}
-		]).delay(2000);
+		];
+
+		this.categories = [
+			{ id: 1, title: 'Anime' },
+			{ id: 2, title: 'wtf' },
+			{ id: 3, title: 'Music' }
+		];
+	}
+
+	getMovies(): Observable<Movie[]> {
+		return Observable.of(this.movies).delay(2000);
+	}
+
+	getMoviesByCategoryId(categoryId: number): Observable<Movie[]> {
+		return Observable.of(this.movies.reduce((datas, movie) => {
+			if (movie.categoryId === categoryId) {
+				datas.push(movie);
+			}
+			return datas;
+		}, [])).delay(2000);
+	}
+
+	getCategories(): Observable<Category[]> {
+		return Observable.of(this.categories).delay(2000);
 	}
 }

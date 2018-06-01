@@ -3,7 +3,7 @@ import { getRouterState } from '../../router-store/router.state';
 import { ElementsState } from '../reducers';
 import * as CategoriesReducer from '../reducers/categories.reducer';
 import { getElementsState } from '.';
-import { DictionaryUtils } from '../../models';
+import { DictionaryUtils, Category } from '../../models';
 
 // ________selectors_________
 
@@ -16,8 +16,8 @@ export const getSelectedMoviesState = createSelector(getElementsState, getRouter
 
 // _______values selectors
 export const getAllCategories = createSelector(getCategoriesState, CategoriesReducer.getAllCategories);
-export const getAllMoviesLoading = createSelector(getCategoriesState, CategoriesReducer.getIsCategoriesLoading);
+export const getAllCategoriesLoading = createSelector(getCategoriesState, CategoriesReducer.getIsCategoriesLoading);
 export const getAllCategoriesState = createSelector(getCategoriesState, (state: CategoriesReducer.CategoriesState) => {
-	const entities = DictionaryUtils.toArray(state.data);
+	const entities = DictionaryUtils.toArray<Category>(state.data);
 	return { ...state, data: entities };
 });

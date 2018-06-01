@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+.loader{
+	margin: auto;
+	width: 100px;
+	height: 100px;
+	animation: spin 2s linear infinite;
+	background-image: url("./assets/icons/charloader.png");
+	background-size: contain;
+}
+.wrapper{
+	width: 50%;
+    margin: auto;
+}
+.link{
+	cursor: pointer;
+	font-size: 20px;
+	box-shadow: 3px 3px 6px 0px #ba2bd2;
+}
+.link:hover{
+	text-decoration-line: underline;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

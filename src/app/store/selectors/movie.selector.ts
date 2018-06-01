@@ -10,9 +10,11 @@ import { getMovies, getMoviesLoading } from '../reducers/movies.reducer';
 const getMoviesState = createSelector(getElementsState, (state: ElementsState) => state.movies);
 
 // movie & routeParams
-export const getSelectedMoviesState = createSelector(getElementsState, getRouterState, (state: ElementsState, router: any) => {
-	return { route: (router ? router.routerReducerState.state : null), movies: state.movies };
-});
+// export const getSelectedMoviesState = createSelector(getElementsState, getRouterState, (state: ElementsState, router: any) => {
+// 	return { route: (router ? router.routerReducerState.state : null), movies: state.movies };
+// });
+
+// export const getSelectedMoviesState = createSelector(getMoviesState)
 
 // pure datas
 export const getAllMovies = createSelector(getMoviesState, getMovies);

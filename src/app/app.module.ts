@@ -4,24 +4,24 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { reducer } from './store/reducers/movies.reducer';
-import { reducers } from './store/reducers/reducer';
 import { EffectsModule } from '@ngrx/effects/';
-import { effects, MovieEffect } from './store/effects/effect';
-import { MovieService } from './services/movie.service';
-import { MoviesListComponent } from './movies-list.component';
+import { MyService } from './services/movie.service';
+import { MoviesListComponent } from './components/movies-list.component';
 import { routerReducers } from './router-store/router.state';
 import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router-store';
 import { CustomRouterStateSerializer } from './router-store/custom-router-state.serializer';
 import { RouterModule, Routes } from '@angular/router';
-import { MovieComponent } from './movie.component';
-import { LinkComponent } from './link.component';
-import { MoviesComponent } from './movies.component';
-import { CategoriesComponent } from './categories.component';
-import { ErrorComponent } from './error.component';
+import { MovieComponent } from './components/movie.component';
+import { LinkComponent } from './components/link.component';
+import { MoviesComponent } from './components/movies.component';
+import { CategoriesComponent } from './components/categories.component';
+import { ErrorComponent } from './components/error.component';
+import { reducers } from './store/reducers';
+import { effects } from './store/effects/effect';
 
 const routes: Routes = [
 	{ path: '', component: CategoriesComponent, pathMatch: 'full' },
-	{ path: 'categorie/:categorieId', component: MoviesComponent, pathMatch: 'full' },
+	{ path: 'category/:categorieId', component: MoviesComponent, pathMatch: 'full' },
 	{ path: ':movieId', component: MovieComponent },
 	{ path: 'error', component: ErrorComponent, pathMatch: 'full' }
 ];
@@ -47,8 +47,8 @@ const routes: Routes = [
 		StoreRouterConnectingModule
 	],
 	providers: [
-		MovieEffect,
-		MovieService,
+		...effects,
+		MyService,
 		{
 			provide: RouterStateSerializer,
 			useClass: CustomRouterStateSerializer
