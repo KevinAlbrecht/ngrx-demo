@@ -1,5 +1,4 @@
-export class Actor {
-  firstName: string;
-  lastName: string;
-  age: number;
+export class Person {
+	firstName: string;
+	lastName: string;
 }
