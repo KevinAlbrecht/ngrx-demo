@@ -1,26 +1,72 @@
 /* You can add global styles to this file, and also import other style files */
-.loader{
-	margin: auto;
-	width: 100px;
-	height: 100px;
-	animation: spin 2s linear infinite;
-	background-image: url("./assets/icons/charloader.png");
-	background-size: contain;
+
+body {
+    width: 900px;
+    margin: auto;
+    border-left: thin inset black;
+    border-right: thin inset black;
+    padding: 0 100px;
+    height: 100vh;
 }
-.wrapper{
-	width: 50%;
+
+.wrapper {
+    margin-top: 100px;
+}
+
+.wrapper ul {
+    padding: 0;
+    width: 888px;
     margin: auto;
 }
-.link{
-	cursor: pointer;
-	font-size: 20px;
-	box-shadow: 3px 3px 6px 0px #ba2bd2;
+
+.wrapper ul li.movie-bloc {
+    display: block;
+    /* border: thin inset black; */
+    box-shadow: 3px 3px 6px 0 #ba2bd2;
+    width: 200px;
+    height: 255px;
+    float: left;
+    margin: 10px;
 }
-.link:hover{
-	text-decoration-line: underline;
+
+.wrapper ul li.movie-bloc span.desc {
+    font-weight: 700;
+}
+
+.wrapper ul li.movie-bloc p {
+    margin-top: 0;
+}
+
+.link {
+    cursor: pointer;
+    font-size: 20px;
+    box-shadow: 3px 3px 6px 0px #ba2bd2;
+}
+
+.link.link-simple {
+    box-shadow: none;
+    text-decoration-line: underline;
+}
+
+.link:hover {
+    text-decoration-line: underline;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loader {
+    margin: auto;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border: .25rem solid gray;
+    border-top-color: black;
+    animation: spin 1s infinite linear;
 }

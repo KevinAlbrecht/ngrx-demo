@@ -1,4 +1,4 @@
-import { Actor, IndexableEntity } from './index';
+import { Person, IndexableEntity } from './index';
 
 export class Movie implements IndexableEntity {
 	id: number;
@@ -7,5 +7,5 @@ export class Movie implements IndexableEntity {
 	language: string;
 	RecordedYear: number;
 	length: number;
-	actors: Actor[];
+	specialMention: Person;
 }

@@ -12,6 +12,7 @@ import { Category } from '../models';
 export class MyService {
 	private readonly movies: Movie[];
 	private readonly categories: Category[];
+	private readonly delayTime = 2000;
 
 	constructor() {
 		this.movies = [
@@ -22,11 +23,46 @@ export class MyService {
 				length: 107,
 				RecordedYear: 2016,
 				title: '君の名は',
-				actors: [{
-					id: 1,
+				specialMention: {
 					firstName: 'makoto',
 					lastName: 'shinkai'
-				}]
+				}
+			},
+			{
+				id: 4,
+				categoryId: 1,
+				language: 'Japanese',
+				length: 130,
+				RecordedYear: 2017,
+				title: '打ち上げ花火',
+				specialMention: {
+					firstName: 'Nobuyuki',
+					lastName: 'Takeuchi'
+				}
+			},
+			{
+				id: 5,
+				categoryId: 1,
+				language: 'Japanese',
+				length: 130,
+				RecordedYear: 2011,
+				title: 'あの日',
+				specialMention: {
+					firstName: 'Tatsuyuki',
+					lastName: 'Nagai'
+				}
+			},
+			{
+				id: 6,
+				categoryId: 1,
+				language: 'Japanese',
+				length: 130,
+				RecordedYear: 2010,
+				title: 'エンジェルビーツ',
+				specialMention: {
+					firstName: 'Hiro',
+					lastName: 'Maruyama'
+				}
 			},
 			{
 				id: 2,
@@ -35,11 +71,71 @@ export class MyService {
 				length: 92,
 				RecordedYear: 1992,
 				title: 'Wayne\'s world',
-				actors: [{
-					id: 1,
+				specialMention: {
 					firstName: 'Mike',
 					lastName: 'Myers'
-				}]
+				}
+			},
+			{
+				id: 7,
+				categoryId: 2,
+				language: 'English',
+				length: 92,
+				RecordedYear: 1996,
+				title: 'Beavis & Butt-head do America',
+				specialMention: {
+					firstName: 'Mike',
+					lastName: 'Judge'
+				}
+			}
+			,
+			{
+				id: 8,
+				categoryId: 2,
+				language: 'English',
+				length: 92,
+				RecordedYear: 1999,
+				title: 'Human traffic',
+				specialMention: {
+					firstName: 'John',
+					lastName: 'Simm'
+				}
+			},
+			{
+				id: 9,
+				categoryId: 2,
+				language: 'English',
+				length: 92,
+				RecordedYear: 2012,
+				title: 'Ted',
+				specialMention: {
+					firstName: 'Seth',
+					lastName: 'MacFarlane'
+				}
+			},
+			{
+				id: 9,
+				categoryId: 2,
+				language: 'English',
+				length: 92,
+				RecordedYear: 2004,
+				title: 'Harold & Kumar',
+				specialMention: {
+					firstName: 'John',
+					lastName: 'Cho'
+				}
+			},
+			{
+				id: 10,
+				categoryId: 2,
+				language: 'English',
+				length: 92,
+				RecordedYear: 1998,
+				title: 'The big lebowski',
+				specialMention: {
+					firstName: 'Steve',
+					lastName: 'Buscemi'
+				}
 			},
 			{
 				id: 3,
@@ -48,11 +144,34 @@ export class MyService {
 				length: 107,
 				RecordedYear: 2014,
 				title: 'Whiplash',
-				actors: [{
-					id: 1,
+				specialMention: {
 					firstName: 'J.K.',
 					lastName: 'Simmons'
-				}]
+				}
+			},
+			{
+				id: 11,
+				categoryId: 3,
+				language: 'English',
+				length: 107,
+				RecordedYear: 2000,
+				title: 'The Filth And The Fury',
+				specialMention: {
+					firstName: 'John',
+					lastName: 'Lydon'
+				}
+			},
+			{
+				id: 12,
+				categoryId: 3,
+				language: 'English',
+				length: 107,
+				RecordedYear: 1980,
+				title: 'The blues brothers',
+				specialMention: {
+					firstName: 'Dan',
+					lastName: 'Aykroyd'
+				}
 			}
 		];
 
@@ -64,7 +183,7 @@ export class MyService {
 	}
 
 	getMovies(): Observable<Movie[]> {
-		return Observable.of(this.movies).delay(2000);
+		return Observable.of(this.movies).delay(this.delayTime);
 	}
 
 	getMoviesByCategoryId(categoryId: number): Observable<Movie[]> {
@@ -74,10 +193,10 @@ export class MyService {
 				datas.push(movie);
 			}
 			return datas;
-		}, [])).delay(2000);
+		}, [])).delay(this.delayTime);
 	}
 
 	getCategories(): Observable<Category[]> {
-		return Observable.of(this.categories).delay(2000);
+		return Observable.of(this.categories).delay(this.delayTime);
 	}
 }

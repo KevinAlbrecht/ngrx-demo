@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 @Component({
 	selector: 'app-categories',
 	template: `
-		<div class="wrapper">
+		<h3>Choose a category</h3>
 		<ng-container *ngIf="!(categoriesState$ | async).loading; else loader">
 		<p class="link" *ngFor="let category of (categoriesState$ | async).data" (click)="goToCategory(category.id)">
 			{{category.title}}
@@ -21,7 +21,6 @@ import { Router } from '@angular/router';
 		<ng-template #loader>
 			<div class="loader"></div>
 		</ng-template>
-		</div>
 		`
 })
 export class CategoriesComponent implements OnInit {
@@ -33,6 +32,7 @@ export class CategoriesComponent implements OnInit {
 	categoriesState$: Observable<CategoryState>;
 
 	goToCategory(id: number) {
+		// usual navigation
 		this.router.navigate([`category/${id}`]);
 	}
 

@@ -18,12 +18,13 @@ import { CategoriesComponent } from './components/categories.component';
 import { ErrorComponent } from './components/error.component';
 import { reducers } from './store/reducers';
 import { effects } from './store/effects/effect';
+import { RouterEffect } from './router-store/router.effect';
 
 const routes: Routes = [
 	{ path: '', component: CategoriesComponent, pathMatch: 'full' },
 	{ path: 'category/:categoryId', component: MoviesComponent, pathMatch: 'full' },
 	{ path: ':movieId', component: MovieComponent },
-	{ path: 'error', component: ErrorComponent, pathMatch: 'full' }
+	{ path: 'error', component: ErrorComponent, pathMatch: 'full' },
 ];
 
 @NgModule({
@@ -42,7 +43,7 @@ const routes: Routes = [
 		StoreModule.forRoot({}),
 		StoreModule.forFeature('elements', reducers),
 		StoreModule.forFeature('router', routerReducers),
-		EffectsModule.forRoot([]),
+		EffectsModule.forRoot([RouterEffect]),
 		EffectsModule.forFeature(effects),
 		StoreRouterConnectingModule
 	],
