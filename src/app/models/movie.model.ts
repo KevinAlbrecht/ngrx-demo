@@ -7,5 +7,6 @@ export class Movie implements IndexableEntity {
 	language: string;
 	RecordedYear: number;
 	length: number;
+	picto: string;
 	specialMention: Person;
 }
