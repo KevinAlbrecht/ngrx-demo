@@ -1,39 +1,68 @@
 /* You can add global styles to this file, and also import other style files */
 
 body {
-    width: 900px;
+    max-width: 900px;
+    min-width: 300px;
     margin: auto;
-    border-left: thin inset black;
-    border-right: thin inset black;
-    padding: 0 100px;
-    height: 100vh;
+    padding: 50px;
 }
 
 .wrapper {
     margin-top: 100px;
 }
 
-.wrapper ul {
+.wrapper div.movies-wrapper {
     padding: 0;
-    width: 888px;
     margin: auto;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
 }
 
-.wrapper ul li.movie-bloc {
+.wrapper div.movie-bloc {
     display: block;
+    min-width: 200px;
     /* border: thin inset black; */
-    box-shadow: 3px 3px 6px 0 #ba2bd2;
+    border: solid 1px #ba2bd2;
     width: 200px;
     height: 255px;
-    float: left;
     margin: 10px;
+    text-align: center;
+    background-size: cover;
+    background-blend-mode: color;
+    position: relative;
 }
 
-.wrapper ul li.movie-bloc span.desc {
+.wrapper div.movie-bloc div.clear-text {
+    color: white;
+    font-size: 22px;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.wrapper div.movie-bloc div.hidden-text {
+    visibility: hidden;
+    color: white;
+    font-size: 18px;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.wrapper div.movie-bloc:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.wrapper div.movie-bloc:hover div.hidden-text {
+    visibility: visible
+}
+
+.wrapper div.movie-bloc span.desc {
     font-weight: 700;
 }
 
-.wrapper ul li.movie-bloc p {
+.wrapper div.movie-bloc p {
     margin-top: 0;
 }
 
@@ -41,15 +70,35 @@ body {
     cursor: pointer;
     font-size: 20px;
     box-shadow: 3px 3px 6px 0px #ba2bd2;
+    max-width: 200px
 }
 
-.link.link-simple {
-    box-shadow: none;
+.link .emoji {
+    float: right
+}
+
+.link:hover .emoji.emoji-rotate {
+    animation: spin 1s linear;
+}
+
+.link:hover .emoji.emoji-swell {
+    animation: vibrate-and-swell 1s linear;
+}
+
+.link:hover .emoji.emoji-simple-swell {
+    animation: swell 1s linear;
+}
+
+.link:hover {
     text-decoration-line: underline;
 }
 
 .link:hover {
     text-decoration-line: underline;
+}
+
+.link.link-simple {
+    box-shadow: none;
 }
 
 @keyframes spin {
@@ -58,6 +107,39 @@ body {
     }
     100% {
         transform: rotate(360deg);
+    }
+}
+
+@keyframes swell {
+    0% {
+        transform: scale(1);
+    }
+    30% {
+        transform: scale(2);
+    }
+    90% {
+        transform: scale(2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes vibrate-and-swell {
+    0% {
+        transform: scale(1) rotate(0deg);
+    }
+    20% {
+        transform: scale(1.2) rotate(-20deg);
+    }
+    50% {
+        transform: scale(1.8) rotate(45deg);
+    }
+    80% {
+        transform: scale(1.2) rotate(-25deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
     }
 }
 

@@ -16,7 +16,7 @@ import { RouterState, MyRouterStateSnapshot } from '../router-store/router.state
 	<ng-container>
 	{{(selectedMoviesState$|async).error}}
 	</ng-container>
-	<p class="link link-simple" (click)="goToCat()"><- Back to categories</p>
+	<p class="link link-simple" (click)="goToCat()">< Back to categories</p>
 	<ng-container *ngIf="!(selectedMoviesState$ | async).loading; else loader">
 			<app-movies-list [movies]="(selectedMoviesState$ |async).data"></app-movies-list>
 	</ng-container>

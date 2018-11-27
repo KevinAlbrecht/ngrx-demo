@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 		<h3>Choose a category</h3>
 		<ng-container *ngIf="!(categoriesState$ | async).loading; else loader">
 		<p class="link" *ngFor="let category of (categoriesState$ | async).data" (click)="goToCategory(category.id)">
-			{{category.title}}
+			{{category.title}} <span class="emoji" [ngClass]="category.emojiStyle">{{category.emoji}}</span>
 		</p>
 		</ng-container>
 		<ng-template #loader>
