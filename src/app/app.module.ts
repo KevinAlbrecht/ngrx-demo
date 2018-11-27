@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
-import { reducer } from './store/reducers/movies.reducer';
 import { EffectsModule } from '@ngrx/effects/';
 import { MyService } from './services/my.service';
 import { MoviesListComponent } from './components/movies-list.component';
@@ -16,6 +15,7 @@ import { CategoriesComponent } from './components/categories.component';
 import { reducers } from './store/reducers';
 import { effects } from './store/effects/effect';
 import { RouterEffect } from './router-store/router.effect';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 const routes: Routes = [
 	{ path: '', component: CategoriesComponent, pathMatch: 'full' },
@@ -37,7 +37,10 @@ const routes: Routes = [
 		StoreModule.forFeature('router', routerReducers),
 		EffectsModule.forRoot([RouterEffect]),
 		EffectsModule.forFeature(effects),
-		StoreRouterConnectingModule
+		StoreRouterConnectingModule,
+		StoreDevtoolsModule.instrument({
+			maxAge: 10
+		})
 	],
 	providers: [
 		...effects,
