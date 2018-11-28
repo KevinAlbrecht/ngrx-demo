@@ -5,21 +5,17 @@ import { getElementsState } from '.';
 import { getMovies, getMoviesLoading, MoviesState } from '../reducers/movies.reducer';
 import { DictionaryUtils, Movie } from '../../models';
 
-// ________selectors_________
-
-// moviesState
+// moviesState selector
 const getMoviesState = createSelector(getElementsState, (state: ElementsState) => state.movies);
 
-// const getSelectedMoviesState = createSelector
-
-// movie & routeParams
+///
+// Example : if we wanted to retrieve movies and url params in one selector.
+///
 // export const getSelectedMoviesState = createSelector(getElementsState, getRouterState, (state: ElementsState, router: any) => {
 // 	return { route: (router ? router.routerReducerState.state : null), movies: state.movies };
 // });
 
-// export const getSelectedMoviesState = createSelector(getMoviesState)
-
-// pure datas
+// data selectors
 export const getAllMovies = createSelector(getMoviesState, getMovies);
 export const getAllMoviesLoading = createSelector(getMoviesState, getMoviesLoading);
 export const getSelectedMovies = createSelector(getMoviesState, (state: MoviesState) => {

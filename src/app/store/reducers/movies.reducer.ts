@@ -21,25 +21,20 @@ export function reducer(
 	action: actions.MoviesActionTypes
 ): MoviesState {
 	switch (action.type) {
-		case actions.GET_MOVIE:
-		case actions.GET_SELECTED_MOVIE:
-		case actions.GET_MOVIES: {
+		case actions.GET_MOVIES_BY_CATEGORY_ID: {
 			return {
 				...state,
 				loading: true
 			};
 		}
-		case actions.GET_MOVIE_ERROR:
-		case actions.GET_MOVIES_ERROR: {
+		case actions.GET_MOVIES_BY_CATEGORY_ID_ERROR: {
 			return {
 				...state,
 				loading: false,
 				error: action.payload
 			};
 		}
-		case actions.GET_MOVIE_SUCCESS:
-		case actions.GET_SELECTED_MOVIE_SUCCESS:
-		case actions.GET_MOVIES_SUCCESS: {
+		case actions.GET_MOVIES_BY_CATEGORY_ID_SUCCESS: {
 			const entities = models.DictionaryUtils.toDictionnary<models.Movie>(action.payload);
 			return {
 				...state,
