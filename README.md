@@ -1,5 +1,8 @@
 # ngrx-demo
-ultra-light demo/sample for ngrx/Store and ngrx/Effects implementation
+This is an ultra-light demo/sample for ngrx (https://ngrx.io/) implementation with use of @ngrx/store @ngrx/effects @ngrx/router-store and @ngrx/store-devtool.
+
+I did this to learn about NGRX, such a great library and convinced me Redux can be a nice choice depending on project.
+
 ## Run
 Run 
 ``
@@ -14,4 +17,7 @@ See
 http://localhost:4200/
 ``
 ## What happened ?
-It will show you 2 different states, (the initial one is obviously not visible), first "loading" state and a success with asynchronous data.
+You can see multiples actions like : ask data ( GET_CATEGORIES ) and recieve data (GET_CATEGORIES_SUCCESS), a simple way to use Effects, reducer, selector and use of angular routes in redux way.
+
+### Style
+I'm about reworking style...
