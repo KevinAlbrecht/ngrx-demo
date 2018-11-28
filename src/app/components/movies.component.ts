@@ -1,14 +1,12 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store, Action } from '@ngrx/store';
-import { getMovies, MoviesState } from '../store/reducers/movies.reducer';
+import { MoviesState } from '../store/reducers/movies.reducer';
 import { Observable } from 'rxjs/Observable';
-import { Movie } from '../models/movie.model';
 import { ElementsState } from '../store/reducers';
-import { getAllMovies } from '../store/selectors/movie.selector';
-import { GetMovieAction, GetSelectedMovieAction } from '../store/actions/movies.action';
+import { GetMoviesOfCategoryIdAction } from '../store/actions/movies.action';
 import { getSelectedMovies } from '../store/selectors/movie.selector';
 import { Go } from '../router-store/router.action';
-import { RouterState, MyRouterStateSnapshot } from '../router-store/router.state';
+import { RouterState } from '../router-store/router.state';
 
 @Component({
 	selector: 'app-movies',
@@ -42,7 +40,7 @@ export class MoviesComponent implements OnInit {
 
 	ngOnInit() {
 		this.selectedMoviesState$ = this.store.select<any>(getSelectedMovies);
-		this.store.dispatch(new GetSelectedMovieAction());
+		this.store.dispatch(new GetMoviesOfCategoryIdAction());
 	}
 }
 

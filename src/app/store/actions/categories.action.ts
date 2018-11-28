@@ -1,13 +1,14 @@
 import { Action } from '@ngrx/store';
 
 // Les types des differentes actions
-export const GET_CATEGORIES = 'GET_CATEGORIES';
-export const GET_CATEGORIES_SUCCESS = 'GET_CATEGORIES_SUCCESS';
-export const GET_CATEGORIES_ERROR = 'GET_CATEGORIES_ERROR';
-
+// Unimplemented
 export const GET_CATEGORY = 'GET_CATEGORY';
 export const GET_CATEGORY_SUCCESS = 'GET_CATEGORY_SUCCESS';
 export const GET_CATEGORY_ERROR = 'GET_CATEGORY_ERROR';
+// Implemented
+export const GET_CATEGORIES = 'GET_CATEGORIES';
+export const GET_CATEGORIES_SUCCESS = 'GET_CATEGORIES_SUCCESS';
+export const GET_CATEGORIES_ERROR = 'GET_CATEGORIES_ERROR';
 
 // Les actions
 export class GetCategoriesAction implements Action {

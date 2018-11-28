@@ -22,7 +22,7 @@ export class MovieEffect {
 
 
 	@Effect()
-	selectedMovies$ = this.actions$.ofType(MovieActions.GET_SELECTED_MOVIE)
+	selectedMovies$ = this.actions$.ofType(MovieActions.GET_MOVIES_BY_CATEGORY_ID)
 		.pipe(
 			withLatestFrom(
 				this.store.select<any>(getRouter),
@@ -39,14 +39,14 @@ export class MovieEffect {
 				return this.movieService.getMoviesByCategoryId(newPayload.payload)
 					.pipe(
 						map(movies => {
-							return new MovieActions.GetSelectedMovieActionSuccess(movies);
+							return new MovieActions.GetMoviesOfCategoryIdSuccessAction(movies);
 						}),
-						catchError(err => of(new MovieActions.GetMovieActionError(err)))
+						catchError(err => of(new MovieActions.GetMoviesOfCategoryIdErrorAction(err)))
 					);
 			}));
 
 
 	@Effect()
-	loadMoviesError$ = this.actions$.ofType(MovieActions.GET_MOVIES_ERROR)
+	loadMoviesError$ = this.actions$.ofType(MovieActions.GET_MOVIES_BY_CATEGORY_ID_ERROR)
 		.pipe(tap(action => this.router.navigate([''])));
 }
