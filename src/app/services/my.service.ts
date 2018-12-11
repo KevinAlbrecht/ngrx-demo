@@ -191,7 +191,8 @@ export class MyService {
 		this.categories = [
 			{ id: 1, title: ' Japanese anime', emoji: '👨‍👩‍👧‍👦', emojiStyle: 'emoji-simple-swell' },
 			{ id: 2, title: 'Crazy movies', emoji: '🐱‍🐉', emojiStyle: 'emoji-swell' },
-			{ id: 3, title: 'Music themed', emoji: '🎵', emojiStyle: 'emoji-rotate' }
+			{ id: 3, title: 'Music themed', emoji: '🎵', emojiStyle: 'emoji-rotate' },
+			{ id: 4, title: 'Not working', emoji: '💥', emojiStyle: 'emoji-swell' }
 		];
 	}
 
@@ -200,7 +201,10 @@ export class MyService {
 	}
 
 	getMoviesByCategoryId(categoryId: number): Observable<Movie[]> {
-		// return Observable.throw("une erreur");
+		if (categoryId == 4) {
+			throw new Error('Bad Category');
+		}
+
 		return Observable.of(this.movies.reduce((datas, movie) => {
 			if (movie.categoryId == categoryId) {
 				datas.push(movie);

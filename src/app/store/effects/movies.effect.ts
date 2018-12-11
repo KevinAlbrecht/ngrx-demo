@@ -37,16 +37,11 @@ export class MovieEffect {
 				}),
 			switchMap((newPayload: { action: Action, payload: number }) => {
 				return this.movieService.getMoviesByCategoryId(newPayload.payload)
-					.pipe(
-						map(movies => {
-							return new MovieActions.GetSelectedMovieActionSuccess(movies);
-						}),
-						catchError(err => of(new MovieActions.GetMovieActionError(err)))
-					);
-			}));
+					.pipe(map(movies => new MovieActions.GetSelectedMovieActionSuccess(movies)));
+			}),
+			catchError(err => of(new MovieActions.GetMoviesActionError(err))));
 
-
-	@Effect()
+	@Effect({ dispatch: false })
 	loadMoviesError$ = this.actions$.ofType(MovieActions.GET_MOVIES_ERROR)
-		.pipe(tap(action => this.router.navigate([''])));
+		.pipe(tap(() => this.router.navigate(['error'])));
 }

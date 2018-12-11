@@ -16,10 +16,12 @@ import { reducers } from './store/reducers';
 import { effects } from './store/effects/effect';
 import { RouterEffect } from './router-store/router.effect';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { ErrorComponent } from './components/error.component';
 
 const routes: Routes = [
 	{ path: '', component: CategoriesComponent, pathMatch: 'full' },
 	{ path: 'category/:categoryId', component: MoviesComponent, pathMatch: 'full' },
+	{ path: 'error', component: ErrorComponent, pathMatch: 'full' }
 ];
 
 @NgModule({
@@ -28,6 +30,7 @@ const routes: Routes = [
 		MoviesListComponent,
 		MoviesComponent,
 		CategoriesComponent,
+		ErrorComponent
 	],
 	imports: [
 		BrowserModule,

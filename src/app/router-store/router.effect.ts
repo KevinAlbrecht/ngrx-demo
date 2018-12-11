@@ -38,6 +38,4 @@ export class RouterEffect {
 			tap((action) => {
 				window.history.forward();
 			}));
-
-
 }

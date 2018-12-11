@@ -30,5 +30,5 @@ export class CategoriesEffect {
 
 	@Effect()
 	loadCategoriesError$ = this.actions$.ofType(CategoriesActions.GET_CATEGORIES_ERROR)
-		.pipe(tap(action => this.router.navigate([''])));
+		.pipe(map(action => of(this.router.navigate(['error']))));
 }
