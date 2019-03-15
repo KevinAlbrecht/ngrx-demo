@@ -1,15 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Effect, Actions } from '@ngrx/effects';
-import { map, catchError, switchMap, tap, withLatestFrom, first, combineLatest, filter } from 'rxjs/operators';
+import { map, catchError, switchMap, withLatestFrom } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import * as MovieActions from '../actions/movies.action';
 import { MyService } from '../../services/my.service';
-import { Action, Store } from '@ngrx/store';
-import { ROUTER_NAVIGATION } from '@ngrx/router-store';
-import { Router, Params } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import { ElementsState } from '../reducers';
-import { getRouterState, getRouter, MyRouterStateSnapshot } from '../../router-store/router.state';
+import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
+import { getRouter, MyRouterStateSnapshot } from '../../router-store/router.state';
 
 @Injectable()
 export class MovieEffect {
@@ -35,13 +32,12 @@ export class MovieEffect {
 						payload: payload.state.params['categoryId']
 					};
 				}),
-			switchMap((newPayload: { action: Action, payload: number }) => {
-				return this.movieService.getMoviesByCategoryId(newPayload.payload)
-					.pipe(map(movies => new MovieActions.GetSelectedMovieActionSuccess(movies)));
+			map(action => action.payload),
+			switchMap((payload: number) => {
+				return this.movieService.getMoviesByCategoryId(payload)
+					.pipe(
+						catchError(err => of(new MovieActions.GetMoviesActionError(err))));
 			}),
-			catchError(err => of(new MovieActions.GetMoviesActionError(err))));
-
-	@Effect({ dispatch: false })
-	loadMoviesError$ = this.actions$.ofType(MovieActions.GET_MOVIES_ERROR)
-		.pipe(tap(() => this.router.navigate(['error'])));
+			map(movies => new MovieActions.GetSelectedMovieActionSuccess(movies)),
+		);
 }

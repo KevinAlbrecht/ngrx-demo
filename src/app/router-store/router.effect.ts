@@ -10,12 +10,12 @@ export class RouterEffect {
 	constructor(
 		private actions$: Actions,
 		private router: Router) { }
-	@Effect({ dispatch: false })
-	navigation$ = this.actions$.ofType('ROUTER_NAVIGATION')
-		.pipe(
-			tap((action) => {
-				console.log('native router navigation action', action);
-			}));
+	// @Effect({ dispatch: false })
+	// navigation$ = this.actions$.ofType('ROUTER_NAVIGATION')
+	// 	.pipe(
+	// 		tap((action) => {
+	// 			console.log('native router navigation action', action);
+	// 		}));
 
 	@Effect({ dispatch: false })
 	CustomGoNavigation$ = this.actions$.ofType(GO)

@@ -1,25 +1,27 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
-import { Store, Action } from '@ngrx/store';
-import { getMovies, MoviesState } from '../store/reducers/movies.reducer';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { MoviesState } from '../store/reducers/movies.reducer';
 import { Observable } from 'rxjs/Observable';
-import { Movie } from '../models/movie.model';
 import { ElementsState } from '../store/reducers';
-import { getAllMovies } from '../store/selectors/movie.selector';
-import { GetMovieAction, GetSelectedMovieAction } from '../store/actions/movies.action';
+import { GetSelectedMovieAction } from '../store/actions/movies.action';
 import { getSelectedMovies } from '../store/selectors/movie.selector';
 import { Go } from '../router-store/router.action';
-import { RouterState, MyRouterStateSnapshot } from '../router-store/router.state';
+import { RouterState } from '../router-store/router.state';
 
 @Component({
 	selector: 'app-movies',
 	template: `
-	<ng-container>
-	{{(selectedMoviesState$|async).error}}
-	</ng-container>
 	<p class="link link-simple" (click)="goToCat()">< Back to categories</p>
-	<ng-container *ngIf="!(selectedMoviesState$ | async).loading; else loader">
-			<app-movies-list [movies]="(selectedMoviesState$ |async).data"></app-movies-list>
+	<ng-container *ngIf="selectedMoviesState$|async as state">
+	<ng-container *ngIf="!state.loading; else loader">
+		<ng-container *ngIf="!state.error;else error">
+		<app-movies-list [movies]="state.data"></app-movies-list></ng-container>
+		</ng-container>
 	</ng-container>
+
+	<ng-template #error>
+		{{state.error|json}}
+	</ng-template>
 	<ng-template #loader>
 		<div class="loader"></div>
 	</ng-template>
@@ -29,7 +31,6 @@ export class MoviesComponent implements OnInit {
 
 	selectedMoviesState$: Observable<MoviesState>;
 
-	// Here I got two store because of sample app
 	constructor(
 		private store: Store<ElementsState>,
 		private routerStore: Store<RouterState>) { }
@@ -44,9 +45,4 @@ export class MoviesComponent implements OnInit {
 		this.selectedMoviesState$ = this.store.select<any>(getSelectedMovies);
 		this.store.dispatch(new GetSelectedMovieAction());
 	}
-}
-
-
-export class Back implements Action {
-	readonly type = '[Router] Back';
 }

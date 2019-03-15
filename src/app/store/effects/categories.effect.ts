@@ -20,15 +20,11 @@ export class CategoriesEffect {
 	@Effect()
 	loadCategories$ = this.actions$.ofType(CategoriesActions.GET_CATEGORIES)
 		.pipe(
-			switchMap((action) => {
+			switchMap(() => {
 				return this.myService.getCategories()
 					.pipe(
 						map(movies => new CategoriesActions.GetCategoriesActionSuccess(movies)),
 						catchError(err => of(new CategoriesActions.GetCategoriesActionError(err)))
 					);
 			}));
-
-	@Effect()
-	loadCategoriesError$ = this.actions$.ofType(CategoriesActions.GET_CATEGORIES_ERROR)
-		.pipe(map(action => of(this.router.navigate(['error']))));
 }

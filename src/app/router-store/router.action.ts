@@ -24,12 +24,7 @@ export class Forward implements Action {
 	readonly type = FORWARD;
 }
 
-export class GoToError implements Action {
-	readonly type = GO_TO_ERROR;
-}
-
 export type Actions
 	= Go
 	| Back
-	| Forward
-	| GoToError;
+	| Forward;

@@ -26,15 +26,14 @@ export function reducer(
 		case actions.GET_CATEGORY:
 		case actions.GET_CATEGORIES: {
 			return {
-				...state,
+				...initialState,
 				loading: true
 			};
 		}
 		case actions.GET_CATEGORY_ERROR:
 		case actions.GET_CATEGORIES_ERROR: {
 			return {
-				...state,
-				loading: false,
+				...initialState,
 				error: action.payload
 			};
 		}
@@ -42,8 +41,7 @@ export function reducer(
 		case actions.GET_CATEGORIES_SUCCESS: {
 			const entities = models.DictionaryUtils.toDictionnary<models.Category>(action.payload);
 			return {
-				...state,
-				loading: false,
+				...initialState,
 				data: entities
 			};
 		}
